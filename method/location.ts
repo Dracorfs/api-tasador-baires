@@ -17,7 +17,6 @@ export default function get_location_value(
 ): number {
 	let ponderacion_total = 1
 	let vecinos_valoracion = verify_neighbours(vecinos)
-	console.log(`vecinos_valoracion: ${vecinos_valoracion}.`)
 
 	if (vecinos_valoracion === 'negativo') {
 		ponderacion_total = 0.8
