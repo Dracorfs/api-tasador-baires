@@ -1,4 +1,7 @@
 //Precio de cierre m2 de CABA (en USD ajustado por inflacion EEUU comienzo 2025)
+
+import get_location_value from "./method/location.ts"
+
 //recurso: usinflationcalculator.com/inflation/calculator-cumulative/
 const today = new Date()
 const data = {
@@ -39,39 +42,13 @@ let precio_promedio_cierre = data.precios_promedio_cierre[today.getFullYear()]
 console.log(`Precio promedio de cierre: ${precio_promedio_cierre} ${data.unidad}.`)
 
 // Metodo 3 6 9 12
-//3 variables de ubicacion
-/*
-1. Vecinos especiales:
-  Restan absoluto 20%: Bomberos, autopistas, boliches, albergues transitorios, trenes, funerarias, hospitales, zonas rojas.
-  Pueden sumar positivamente: parques, plazas, clubes.
-2. Iluminacion artificial en la cuadra: buena, mala, mediana.
-3. Arbolado de la cuadra: bueno, malo, mediano.
-Ponderacion total: +-20%
-*/
-let ponderacion_total
+let value = precio_promedio_cierre
 
-const vecinos_opciones = {
-	'negativo': ['bomberos', 'autopistas', 'boliches', 'albergues transitorios', 'trenes', 'funerarias', 'hospitales', 'zonas rojas'],
-	'positivo': ['parques', 'plazas', 'clubes']
-}
-let vecinos = vecinos_opciones[0]
+let location_value = get_location_value(['parques'], 'mediana', 'bueno')
+console.log(location_value)
 
-const iluminacion_opciones = ['buena','mala','mediana']
-let iluminacion = iluminacion_opciones[0]
-
-const arbolado_opciones = ['bueno','malo','mediano']
-let arbolado = arbolado_opciones[0]
-
-if (vecinos !== 'negativo' && iluminacion !== 'mala' && arbolado !== 'malo') {
-	ponderacion_total = 1.2
-}
-if (vecinos !== 'negativo' && iluminacion !== 'mediana' && arbolado !== 'mediano') {
-	ponderacion_total = 1
-}
-if (vecinos !== 'negativo' && iluminacion !== 'mediana' && arbolado !== 'mediano') {
-	ponderacion_total = 0.8
-}
-console.log(ponderacion_total)
+value = precio_promedio_cierre * location_value
+console.log(`Valor considerando la locacion (Indice=${location_value}): ${value} ${data.unidad}.`)
 
 // URL
 const precio_base = 20000
