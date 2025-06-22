@@ -69,7 +69,7 @@ if (vecinos !== 'negativo' && iluminacion !== 'mediana' && arbolado !== 'mediano
 	ponderacion_total = 1
 }
 if (vecinos !== 'negativo' && iluminacion !== 'mediana' && arbolado !== 'mediano') {
-	ponderacion_total = 1
+	ponderacion_total = 0.8
 }
 console.log(ponderacion_total)
 
