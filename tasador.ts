@@ -1,4 +1,5 @@
 import get_location_value from "./method/location.ts"
+import get_url from "./get_url.ts"
 import data from "./data.json" with { type: "json" }
 //Precio de cierre m2 de CABA (en USD ajustado por inflacion EEUU comienzo 2025)
 //recurso: usinflationcalculator.com/inflation/calculator-cumulative/
@@ -19,7 +20,4 @@ console.log(`Valor considerando la locacion (Indice=${location_value}): ${value}
 // URL
 const precio_base = 20000
 const precio_techo = 200000
-const parameter = `-${precio_base}-${precio_techo}-dolar`
-const orden = `-orden-precio-m2-ascendente`
-const url_base = `https://www.zonaprop.com.ar/departamentos-venta${parameter+orden}.html`
-console.log(url_base)
+console.log(get_url(precio_base, precio_techo))
