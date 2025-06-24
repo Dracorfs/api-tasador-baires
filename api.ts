@@ -53,7 +53,7 @@ serve(async (req: Request) => {
 
 		const inmutable = get_inmutable_value(body.inmutable)
 		const final_factor = parseFloat((location * building * inmutable).toFixed(3))
-		const precio_m2_base = data.precios_promedio_cierre[new Date().getFullYear()]
+		const precio_m2_base = Object.values(data.precios_promedio_cierre).at(-1) || 1
 		const tasacion = final_factor * precio_m2_base * body.inmutable.cubiertos
 
 		return new Response(
