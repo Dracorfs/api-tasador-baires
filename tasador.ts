@@ -1,6 +1,6 @@
-import get_location_value from "./method/location.ts"
-import get_building_value from "./method/building.ts"
-import get_inmutable_value from "./method/inmutable.ts"
+import get_location_value from "./methods/location.ts"
+import get_building_value from "./methods/building.ts"
+import get_inmutable_value from "./methods/inmutable.ts"
 import get_url from "./get_url.ts"
 import data from "./data.json" with { type: "json" }
 //recurso: usinflationcalculator.com/inflation/calculator-cumulative/
