@@ -1,4 +1,5 @@
-deno run ./tasador.js
+Para correr la API en local:
+deno run --allow-net api.ts
 
 Ejemplo de request:
 POST
