@@ -16,16 +16,16 @@ https://api-tasador-baires.deno.dev/tasacion
     "servicios_centrales": "medium",
     "exteriores": "good",
     "inmutable": {
-        "cubiertos": 70,
-        "semiCubiertos": 5,
-        "descubiertos_balcon": 5,
-        "descubiertos_patio": 0,
-        "expensas": 25000,
-        "impuestos_fijos": 10000,
-        "piso": 6,
-        "altura_total_edificio": 10,
-        "orientacion": "NE",
-        "disposicion": "frente",
-        "tipo": "duplex"
+        "covered_surface": 70,
+        "semi_covered_surface": 5,
+        "uncovered_surface_balcony": 5,
+        "uncovered_surface_backyard": 0,
+        "maintenance_fees": 25000,
+        "fixed_costs_and_taxes": 10000,
+        "floor": 6,
+        "building_highest_floor": 10,
+        "orientation": "NE",
+        "layout": "frente",
+        "type": "duplex"
     }
 }

@@ -1,11 +1,11 @@
 /*
-Edificio:
-    1. Edad
-    2. Calidad constructiva
+Building:
+    1. Age
+    2. Constructive quality
     3. Categoria
-    4. Espacios comunes
-    5. Servicios centrales
-    6. Exteriores (paredes, medianeras, puertas,etc)
+    4. Common spaces
+    5. Central services
+    6. Exteriors (walls, doors, etc.)
 Total: +-10%
 */
 export type Quality = 'good' | 'medium' | 'bad'
@@ -49,6 +49,6 @@ export default function get_building_value(
 	else if (exterior === 'bad')
 		total -= 0.02
 
-	// Limitar al rango [0.9, 1.1]
+	// Limit range [0.9, 1.1]
 	return Math.max(0.9, Math.min(1.1, parseFloat(total.toFixed(3))))
 }
