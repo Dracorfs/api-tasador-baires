@@ -9,23 +9,24 @@ serve(async (req: Request) => {
 		const body = await req.json()
 
 		const location = get_location_value(
-			body.vecinos,
-			body.iluminacion,
-			body.arbolado
+			body.neighbours,
+			body.lighting,
+			body.greenery
 		)
 
 		const building = get_building_value(
-			body.edad,
-			body.calidad,
-			body.espacios_comunes,
-			body.servicios_centrales,
-			body.exteriores
+			body.age,
+			body.quality,
+			body.common_space,
+			body.central_services,
+			body.exterior,
+			body.prestige
 		)
 
 		const inmutable = get_inmutable_value(body.inmutable)
 		const final_factor = parseFloat((location * building * inmutable).toFixed(3))
 		const precio_m2_base = Object.values(data.precios_promedio_cierre).at(-1) || 1
-		const tasacion = final_factor * precio_m2_base * body.inmutable.cubiertos
+		const tasacion = final_factor * precio_m2_base * body.inmutable.covered_surface
 
 		return new Response(
 			JSON.stringify({

@@ -2,34 +2,36 @@
 Building:
     1. Age
     2. Constructive quality
-    3. Categoria
-    4. Common spaces
-    5. Central services
-    6. Exteriors (walls, doors, etc.)
+    3. Common spaces
+    4. Central services
+    5. Exteriors (walls, doors, etc.)
+    6. Prestige. If "high", then fixed +10% total.
 Total: +-10%
 */
 export type Quality = 'good' | 'medium' | 'bad'
+export type Prestige = 'high' | 'medium' | 'low'
 
 export default function get_building_value(
 	age: number,
 	quality: Quality,
 	common_space: Quality,
-    central_services: Quality,
-    exterior: Quality
+	central_services: Quality,
+	exterior: Quality,
+	prestige: Prestige
 ): number {
 	let total = 1.0
 
 	// 1. Age
 	if (age > 50)
-		total -= 0.03
-    else if (age < 10)
-		total += 0.01
+		total -= 0.015
+	else if (age < 10)
+		total += 0.015
 
 	// 2. Constructive quality
 	if (quality === 'good')
-		total += 0.03
+		total += 0.025
 	else if (quality === 'bad')
-		total -= 0.03
+		total -= 0.025
 
 	// 3. Common spaces
 	if (common_space === 'good')
@@ -45,10 +47,18 @@ export default function get_building_value(
 
 	// 5. Exteriors
 	if (exterior === 'good')
-		total += 0.02
+		total += 0.015
 	else if (exterior === 'bad')
-		total -= 0.02
+		total -= 0.015
 
-	// Limit range [0.9, 1.1]
+	// 6. Prestige
+	if (prestige === 'high')
+		total = 1.1
+	else if (prestige === 'medium')
+		total += 0.025
+	else if (prestige === 'low')
+		total -= 0.025
+
+	// Clamp to range [0.9, 1.1]
 	return Math.max(0.9, Math.min(1.1, parseFloat(total.toFixed(3))))
 }

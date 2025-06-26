@@ -5,16 +5,17 @@ Ejemplo de request:
 POST
 https://api-tasador-baires.deno.dev/tasacion
 {
-    "vecinos": [
+    "neighbours": [
         "parques"
     ],
-    "iluminacion": "buena",
-    "arbolado": "bueno",
-    "edad": 15,
-    "calidad": "medium",
-    "espacios_comunes": "good",
-    "servicios_centrales": "medium",
-    "exteriores": "good",
+    "lighting": "buena",
+    "greenery": "bueno",
+    "age": 15,
+    "quality": "medium",
+    "common_space": "good",
+    "central_services": "medium",
+    "exterior": "good",
+    "prestige": "high",
     "inmutable": {
         "covered_surface": 70,
         "semi_covered_surface": 5,
