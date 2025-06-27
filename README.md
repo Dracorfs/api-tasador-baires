@@ -27,6 +27,7 @@ https://api-tasador-baires.deno.dev/tasacion
         "building_highest_floor": 10,
         "orientation": "NE",
         "layout": "front_facing",
-        "type": "duplex"
+        "type": "duplex",
+        "views": "remarkable"
     }
 }

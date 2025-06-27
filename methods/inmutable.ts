@@ -44,6 +44,7 @@ A 2-room duplex (if ceiling height allows) can be worth more than a 2-room singl
 type Orientation = 'N' | 'E' | 'O' | 'S' | 'NE' | 'NO' | 'SE' | 'SO'
 type Layout = 'front_facing' | 'rear_facing' | 'internal' | 'lateral' | 'inverted_floor_plan'
 type ApartmentType = 'studio_apartment' | 'half_floor' | 'full_floor' | 'duplex'
+type Views = 'remarkable' | 'good' | 'common' | 'bad'
 
 type InmutableInput = {
 	covered_surface: number
@@ -56,13 +57,14 @@ type InmutableInput = {
 	orientation: Orientation
 	layout: Layout
 	type: ApartmentType
-	building_highest_floor: number
+	building_highest_floor: number,
+	views: Views
 }
 
 export default function get_inmutable_value(listed_value: number, input: InmutableInput): number {
 	let total = 1.0
 
-	const { covered_surface, semi_covered_surface, uncovered_surface_balcony, uncovered_surface_backyard, maintenance_fees, fixed_costs_and_taxes, floor, orientation, layout, type, building_highest_floor } = input
+	const { covered_surface, semi_covered_surface, uncovered_surface_balcony, uncovered_surface_backyard, maintenance_fees, fixed_costs_and_taxes, floor, orientation, layout, type, building_highest_floor, views } = input
 	
 	// 1. Covered surface area
 	if (covered_surface <= 30) total *= 1.1
@@ -119,6 +121,13 @@ export default function get_inmutable_value(listed_value: number, input: Inmutab
 	total *= layout_factor[layout]
 
 	// 8. Views (subjective/relative)
+	const views_factor: Record<Views, number> = {
+		remarkable: 1.1,
+		good: 1.05,
+		common: 1.0,
+		bad: 0.9,
+	}
+	total *= views_factor[views]
 
 	// 9. Type
 	if (type === 'duplex') {
