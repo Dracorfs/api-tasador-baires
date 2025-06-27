@@ -59,7 +59,7 @@ type InmutableInput = {
 	building_highest_floor: number
 }
 
-export default function get_inmutable_value(input: InmutableInput): number {
+export default function get_inmutable_value(listed_value: number, input: InmutableInput): number {
 	let total = 1.0
 
 	const { covered_surface, semi_covered_surface, uncovered_surface_balcony, uncovered_surface_backyard, maintenance_fees, fixed_costs_and_taxes, floor, orientation, layout, type, building_highest_floor } = input
@@ -76,9 +76,14 @@ export default function get_inmutable_value(input: InmutableInput): number {
 	const m2_extra = semi_covered_surface * 0.5 + uncovered_surface_balcony * 0.33 + uncovered_surface_backyard * 0.2
 	total += m2_extra / covered_surface // proportional
 
-	// 3. Value of monthly maintenance fees
-	// 4. Value of fixed costs (AySA, ABL, and other taxes)
-
+	// 3. Value of monthly maintenance fees.
+	const monthly_cost_factor = 1000
+	const affordability_fees = evaluate_affordability(listed_value, maintenance_fees, monthly_cost_factor)
+	total *= affordability_fees
+	//4. Value of fixed costs (AySA, ABL, and other taxes)
+	const affordability_costs = evaluate_affordability(listed_value, fixed_costs_and_taxes, monthly_cost_factor)
+	total *= affordability_costs
+	
 	// 5. Building floor
 	let highnes_factor = 1
 	if (floor <= 1) highnes_factor = 0.9
@@ -122,4 +127,11 @@ export default function get_inmutable_value(input: InmutableInput): number {
 	}
 
 	return parseFloat(total.toFixed(3))
+}
+
+function evaluate_affordability(listed_value: number, monthly_cost: number, factor: number): number {
+	const ratio = listed_value / factor
+	if (monthly_cost <= ratio * 0.75) return 1.1 //'good'
+	if (monthly_cost <= ratio * 1.25) return 1 //'acceptable'
+	return 0.9 //'bad'
 }

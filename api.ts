@@ -23,7 +23,7 @@ serve(async (req: Request) => {
 			body.prestige
 		)
 
-		const inmutable = get_inmutable_value(body.inmutable)
+		const inmutable = get_inmutable_value(body.listed_value, body.inmutable)
 		const final_factor = parseFloat((location * building * inmutable).toFixed(3))
 		const precio_m2_base = Object.values(data.precios_promedio_cierre).at(-1) || 1
 		const tasacion = final_factor * precio_m2_base * body.inmutable.covered_surface
@@ -33,6 +33,7 @@ serve(async (req: Request) => {
 				location,
 				building,
 				inmutable,
+				listed_value: body.listed_value,
 				factor_final: final_factor,
 				tasacion_usd: Math.round(tasacion)
 			}),
