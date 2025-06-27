@@ -6,10 +6,10 @@ POST
 https://api-tasador-baires.deno.dev/tasacion
 {
     "neighbours": [
-        "parques"
+        "parks"
     ],
-    "lighting": "buena",
-    "greenery": "bueno",
+    "lighting": "good",
+    "greenery": "good",
     "age": 15,
     "quality": "medium",
     "common_space": "good",
@@ -26,7 +26,7 @@ https://api-tasador-baires.deno.dev/tasacion
         "floor": 6,
         "building_highest_floor": 10,
         "orientation": "NE",
-        "layout": "frente",
+        "layout": "front_facing",
         "type": "duplex"
     }
 }

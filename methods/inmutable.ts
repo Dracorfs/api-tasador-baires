@@ -42,8 +42,8 @@ A 2-room duplex (if ceiling height allows) can be worth more than a 2-room singl
 	c. Duplex
 */
 type Orientation = 'N' | 'E' | 'O' | 'S' | 'NE' | 'NO' | 'SE' | 'SO'
-type Layout = 'frente' | 'contrafrente' | 'interno' | 'lateral' | 'plano_invertido'
-type ApartmentType = 'monoambiente' | 'semipiso' | 'piso' | 'duplex'
+type Layout = 'front_facing' | 'rear_facing' | 'internal' | 'lateral' | 'inverted_floor_plan'
+type ApartmentType = 'studio_apartment' | 'half_floor' | 'full_floor' | 'duplex'
 
 type InmutableInput = {
 	covered_surface: number
@@ -80,18 +80,18 @@ export default function get_inmutable_value(input: InmutableInput): number {
 	// 4. Value of fixed costs (AySA, ABL, and other taxes)
 
 	// 5. Building floor
-	let alturaFactor = 1
-	if (floor <= 1) alturaFactor = 0.9
-	else if (floor <= 3) alturaFactor = 0.95
-	else if (floor <= 5) alturaFactor = 1.0
-	else if (floor <= 7) alturaFactor = 1.05
-	else if (floor <= 9) alturaFactor = 1.1
-	else if (floor < building_highest_floor - 1) alturaFactor = 1.15
-	else alturaFactor = 0.9
-	total *= alturaFactor
+	let highnes_factor = 1
+	if (floor <= 1) highnes_factor = 0.9
+	else if (floor <= 3) highnes_factor = 0.95
+	else if (floor <= 5) highnes_factor = 1.0
+	else if (floor <= 7) highnes_factor = 1.05
+	else if (floor <= 9) highnes_factor = 1.1
+	else if (floor < building_highest_floor - 1) highnes_factor = 1.15
+	else highnes_factor = 0.9
+	total *= highnes_factor
 
 	// 6. Orientation
-	const orientMap: Record<Orientation, number> = {
+	const orientation_factor: Record<Orientation, number> = {
 		N: 1.1,
 		E: 1.0,
 		O: 1.0,
@@ -101,17 +101,17 @@ export default function get_inmutable_value(input: InmutableInput): number {
 		SE: 0.95,
 		SO: 0.95
 	}
-	total *= orientMap[orientation]
+	total *= orientation_factor[orientation]
 
 	// 7. Layout
-	const dispoFactor: Record<Layout, number> = {
-		frente: 1.05,
-		contrafrente: 1.0,
-		interno: 0.9,
+	const layout_factor: Record<Layout, number> = {
+		front_facing: 1.05,
+		rear_facing: 1.0,
+		internal: 0.9,
 		lateral: 0.9,
-		plano_invertido: 0.9
+		inverted_floor_plan: 0.9
 	}
-	total *= dispoFactor[layout]
+	total *= layout_factor[layout]
 
 	// 8. Views (subjective/relative)
 

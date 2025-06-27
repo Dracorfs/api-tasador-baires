@@ -1,8 +1,8 @@
 /*
 3 location variables:
 	1. Special neighbours:
-		Absolute -20%: Bomberos, autopistas, boliches, albergues transitorios, trenes, funerarias, hospitales, zonas rojas.
-		Might add value: parques, plazas, clubes.
+		Absolute -20%: fire stations, highways, nightclubs, love hotels, railways, funeral homes, hospitals, red-light districts.
+		Might add value: parks, clubs.
 	2. Artificial lighting of the block.
 	3. Greenery.
 Total: +-20%
@@ -28,8 +28,8 @@ export default function get_location_value(
 	return ponderacion_total
 }
 function verify_neighbours(neighbour_list: Neighbours) {
-	const negative_neighbours = ['bomberos', 'autopistas', 'boliches', 'albergues transitorios', 'trenes', 'funerarias', 'hospitales', 'zonas rojas']
-	const positive_neighbours = ['parques', 'plazas', 'clubes']
+	const negative_neighbours = ['fire-stations','highways','nightclubs','love-hotels','railways','funeral-homes','hospitals','red-light-districts']
+	const positive_neighbours = ['parks','clubs']
 
 	if (neighbour_list.some(neighbour => negative_neighbours.includes(neighbour))) return 'negative'
 	if (neighbour_list.some(neighbour => positive_neighbours.includes(neighbour))) return 'positive'
