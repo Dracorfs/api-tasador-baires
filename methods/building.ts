@@ -8,8 +8,7 @@ Building:
     6. Prestige. If "high", then fixed +10% total.
 Total: +-10%
 */
-export type Quality = 'good' | 'medium' | 'bad'
-export type Prestige = 'high' | 'medium' | 'low'
+import type { Quality,Prestige } from "../types.d.ts"
 
 export default function get_building_value(
 	age: number,

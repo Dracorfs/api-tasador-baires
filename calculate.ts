@@ -1,10 +1,11 @@
+import type { ValuationInput } from "./types.d.ts"
 import get_location_value from "./methods/location.ts"
 import get_building_value from "./methods/building.ts"
 import get_inmutable_value from "./methods/inmutable.ts"
 import get_condition_value from "./methods/condition.ts"
 import data from "./data.json" with { type: "json" }
 
-export default function calculate_valuation(body: any) {
+export default function calculate_valuation(body: ValuationInput) {
 	const location = get_location_value(
 		body.neighbours,
 		body.lighting,

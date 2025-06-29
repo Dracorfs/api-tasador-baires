@@ -16,24 +16,9 @@ Systems:
     Cooling / Air conditioning
     Ventilation
 */
+import type { ConditionData } from "../types.d.ts"
 
-export type Quality = 'good' | 'medium' | 'bad'
-
-export interface ConditionInputs {
-	kitchen: Quality
-	bathrooms: Quality
-	walls: Quality
-	floors: Quality
-	closets: Quality
-	water: Quality
-	gas: Quality
-	electricity: Quality
-	drainage: Quality
-	heating: Quality
-	cooling: Quality
-	ventilation: Quality
-}
-export default function get_condition_value(condition: ConditionInputs): number {
+export default function get_condition_value(condition: ConditionData): number {
 	let total = 1.0
 
 	// Config weight by groups
@@ -53,7 +38,7 @@ export default function get_condition_value(condition: ConditionInputs): number 
 	function group_score(keys: string[], w: number) {
 		let score = 0
 		for (const key of keys) {
-			const value = condition[key as keyof ConditionInputs]
+			const value = condition[key as keyof ConditionData]
 			if (value === 'good') score += 1
 			else if (value === 'medium') score += 0.5
 			// bad → 0

@@ -7,8 +7,7 @@
 	3. Greenery.
 Total: +-20%
 */
-export type Quality = 'good' | 'medium' | 'bad'
-export type Neighbours = string[]
+import type { Neighbours, Quality } from "../types.d.ts"
 
 export default function get_location_value(
 	neighbours: Neighbours,

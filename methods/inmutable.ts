@@ -41,27 +41,9 @@ A 2-room duplex (if ceiling height allows) can be worth more than a 2-room singl
 	b. Half-floor / Full-floor unit
 	c. Duplex
 */
-type Orientation = 'N' | 'E' | 'O' | 'S' | 'NE' | 'NO' | 'SE' | 'SO'
-type Layout = 'front_facing' | 'rear_facing' | 'internal' | 'lateral' | 'inverted_floor_plan'
-type ApartmentType = 'studio_apartment' | 'half_floor' | 'full_floor' | 'duplex'
-type Views = 'remarkable' | 'good' | 'common' | 'bad'
+import type { InmutableData,Orientation,Layout,Views } from "../types.d.ts"
 
-type InmutableInput = {
-	covered_surface: number
-	semi_covered_surface: number
-	uncovered_surface_balcony: number
-	uncovered_surface_backyard: number
-	maintenance_fees: number
-	fixed_costs_and_taxes: number
-	floor: number
-	orientation: Orientation
-	layout: Layout
-	type: ApartmentType
-	building_highest_floor: number,
-	views: Views
-}
-
-export default function get_inmutable_value(listed_value: number, input: InmutableInput): number {
+export default function get_inmutable_value(listed_value: number, input: InmutableData): number {
 	let total = 1.0
 
 	const { covered_surface, semi_covered_surface, uncovered_surface_balcony, uncovered_surface_backyard, maintenance_fees, fixed_costs_and_taxes, floor, orientation, layout, type, building_highest_floor, views } = input
@@ -116,7 +98,7 @@ export default function get_inmutable_value(listed_value: number, input: Inmutab
 		rear_facing: 1.0,
 		internal: 0.9,
 		lateral: 0.9,
-		inverted_floor_plan: 0.9
+		reversed_plan: 0.9
 	}
 	total *= layout_factor[layout]
 
