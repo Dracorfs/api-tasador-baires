@@ -29,5 +29,19 @@ https://api-tasador-baires.deno.dev/tasacion
         "layout": "front_facing",
         "type": "duplex",
         "views": "remarkable"
+    },
+    "condition": {
+        "kitchen": "good",
+        "bathrooms": "medium",
+        "walls": "good",
+        "floors": "good",
+        "closets": "medium",
+        "water": "good",
+        "gas": "good",
+        "electricity": "medium",
+        "drainage": "good",
+        "heating": "medium",
+        "cooling": "good",
+        "ventilation": "good"
     }
 }
