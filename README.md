@@ -5,6 +5,7 @@ Ejemplo de request:
 POST
 https://api-tasador-baires.deno.dev/tasacion
 {
+    "listed_value": 100000,
     "neighbours": [
         "parks"
     ],
