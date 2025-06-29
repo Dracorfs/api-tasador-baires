@@ -1,49 +1,14 @@
-import get_location_value from "./methods/location.ts"
-import get_building_value from "./methods/building.ts"
-import get_inmutable_value from "./methods/inmutable.ts"
-import get_condition_value from "./methods/condition.ts"
-import data from "./data.json" with { type: "json" }
+import calculate_valuation from "./calculate.ts"
 
 Deno.serve(async (req: Request) => {
 	if (req.method === "POST" && new URL(req.url).pathname === "/tasacion") {
 		const body = await req.json()
+		const resultado = calculate_valuation(body)
 
-		const location = get_location_value(
-			body.neighbours,
-			body.lighting,
-			body.greenery
-		)
-		const building = get_building_value(
-			body.age,
-			body.quality,
-			body.common_space,
-			body.central_services,
-			body.exterior,
-			body.prestige
-		)
-		const inmutable = get_inmutable_value(body.listed_value, body.inmutable)
-		const condition = get_condition_value(body.condition)
-
-		const subtotal_factor = location * building * inmutable * condition
-		const final_factor = parseFloat(subtotal_factor.toFixed(3))
-		const precio_m2_base = Object.values(data.precios_promedio_cierre).at(-1) || 1
-		const tasacion = final_factor * precio_m2_base * body.inmutable.covered_surface
-
-		return new Response(
-			JSON.stringify({
-				location,
-				building,
-				inmutable,
-				condition,
-				listed_value: body.listed_value,
-				factor_final: final_factor,
-				tasacion_usd: Math.round(tasacion)
-			}),
-			{
-				headers: { "Content-Type": "application/json" },
-				status: 200
-			}
-		)
+		return new Response(JSON.stringify(resultado), {
+			headers: { "Content-Type": "application/json" },
+			status: 200
+		})
 	}
 
 	return new Response("Ruta no encontrada", { status: 404 })
