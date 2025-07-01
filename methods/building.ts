@@ -53,8 +53,6 @@ export default function get_building_value(
 	// 6. Prestige
 	if (prestige === 'high')
 		total = 1.1
-	else if (prestige === 'medium')
-		total += 0.025
 	else if (prestige === 'low')
 		total -= 0.025
 
