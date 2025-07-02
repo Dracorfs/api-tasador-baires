@@ -1,6 +1,9 @@
 Para correr la API en local:
 deno run --allow-net api.ts
 
+Para correr los tests:
+deno test
+
 Ejemplo de request:
 POST
 https://api-tasador-baires.deno.dev/tasacion
