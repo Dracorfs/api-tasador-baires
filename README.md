@@ -1,3 +1,5 @@
+![Deno Tests](https://github.com/Dracorfs/api-tasador-baires/actions/workflows/test.yml/badge.svg)
+
 # 🏢 Tasador Baires - API
 
 Una API para estimar el valor de tasación de propiedades en la Ciudad Autónoma de Buenos Aires, utilizando múltiples factores como ubicación, estado del edificio, características inmutables y condición general.
