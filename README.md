@@ -49,3 +49,14 @@ https://api-tasador-baires.deno.dev/tasacion
         "ventilation": "good"
     }
 }
+
+Ejemplo de response:
+{
+    "location": 1.2,
+    "building": 1.1,
+    "inmutable": 1.147,
+    "condition": 1.2,
+    "listed_value": 100000,
+    "factor_final": 1.817,
+    "tasacion_usd": 279818
+}
