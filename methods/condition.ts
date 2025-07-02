@@ -23,11 +23,12 @@ export default function get_condition_value(condition: ConditionData): number {
 
 	// Config weight by groups
 	const weight = {
-		ambient: 0.06,        // kitchen, bathrooms, etc.
-		installations: 0.07,  // water, gas, etc.
-		systems: 0.07         // heating, etc.
+		ambient: 0.1,        // kitchen, bathrooms, etc.
+		installations: 0.1,  // water, gas, etc.
+		systems: 0.1        // heating, etc.
 	}
-	// Maximum = 1 + 0.06 + 0.07 + 0.07 = 1.2
+	// Maximum = 1 + 0.1 + 0.1 + 0.1 = 1.3 → clamped a 1.2
+	// Minimum = 0.9 * 0.9 * 0.9 = 0.729 → clamped a 0.8
 
 	// Groups
 	const ambient = ['kitchen', 'bathrooms', 'walls', 'floors', 'closets']
