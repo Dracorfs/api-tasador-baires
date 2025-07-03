@@ -1,15 +1,22 @@
-/*
-Building:
-    1. Age
-    2. Constructive quality
-    3. Common spaces
-    4. Central services
-    5. Exteriors (walls, doors, etc.)
-    6. Prestige. If "high", then fixed +10% total.
-Total: +-10%
-*/
 import type { Quality,Prestige } from "../types.d.ts"
 
+/**
+ * Calculates the value factor based on the building's characteristics. Total: +-10%
+ *
+ * @param age - The age of the building in years.
+ * @param quality - The constructive quality (good, medium, bad).
+ * @param common_space - Quality of the shared/common spaces.
+ * @param central_services - Quality of the central services.
+ * @param exterior - Quality of the exterior (walls, doors, etc.).
+ * @param prestige - The social prestige level of the building. If "high", then fixed +10% total.
+ * @returns A factor between 0.9 and 1.1 representing the building value.
+ *
+ * @example
+ * ```ts
+ * const value = get_building_value(10, 'good', 'high', 'medium', 'good', 'good');
+ * console.log(value); // e.g. 1.08
+ * ```
+ */
 export default function get_building_value(
 	age: number,
 	quality: Quality,
