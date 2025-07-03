@@ -1,23 +1,12 @@
-/*
-Condition-related variables (can be improved)
-(Overall weight: ±20%. So if fully renovated: +50%)
-    Kitchen
-    Bathrooms
-    Walls
-    Floors
-    Closets
-Installations:
-    Water supply
-    Gas system
-    Electrical system
-    Drainage functionality
-Systems:
-    Heating
-    Cooling / Air conditioning
-    Ventilation
-*/
 import type { ConditionData } from "../types.d.ts"
 
+/**
+ * Calculates the property condition factor based on condition-related variables that can be improved (ambient state, installations and systems).
+ * This reflects the state of maintenance or renovation of the property. Overall weight: ±20%. So if fully renovated: +50%
+ *
+ * @param condition - An object describing the quality of different components of the property (Kitchen, Bathrooms, Walls, Floors, Closets; Installations: Water supply, Gas system, Electrical system, Drainage functionality; Systems: Heating, Cooling, Ventilation).
+ * @returns A number between 0.8 and 1.2 that adjusts the base value according to condition quality.
+ */
 export default function get_condition_value(condition: ConditionData): number {
 	let total = 1.0
 
