@@ -43,6 +43,16 @@ A 2-room duplex (if ceiling height allows) can be worth more than a 2-room singl
 */
 import type { InmutableData,Orientation,Layout,Views } from "../types.d.ts"
 
+/**
+ * Calculates a factor based on immutable characteristics of the property,
+ * such as surface area, floor level, orientation, and layout.
+ *
+ * These values are considered fixed and significantly affect valuation.
+ *
+ * @param listed_value - The published value of the property in USD.
+ * @param inmutable - An object with details: covered_surface, semi_covered_surface, uncovered_surface_balcony, uncovered_surface_backyard, maintenance_fees, fixed_costs_and_taxes, floor, building_highest_floor, orientation, layout, type, views.
+ * @returns A factor between ~0.8 and ~1.2 representing the immutable impact on valuation.
+ */
 export default function get_inmutable_value(listed_value: number, input: InmutableData): number {
 	let total = 1.0
 
