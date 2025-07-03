@@ -1,14 +1,16 @@
-/*
-3 location variables:
-	1. Special neighbours:
-		Absolute -20%: fire stations, highways, nightclubs, love hotels, railways, funeral homes, hospitals, red-light districts.
-		Might add value: parks, clubs.
-	2. Artificial lighting of the block.
-	3. Greenery.
-Total: +-20%
-*/
 import type { Neighbours, Quality } from "../types.d.ts"
 
+/**
+ * Calculates a factor based on the location and immediate environment of the property. Total: +-20%.
+ * 
+ * It takes into account proximity to special neighbors (e.g., parks, hospitals),
+ * lighting, and tree coverage of the block.
+ *
+ * @param neighbours - Array of nearby elements (fire stations, highways, nightclubs, love hotels, railways, funeral homes, hospitals, red-light districts, parks, clubs).
+ * @param lighting - Quality of artificial lighting in the block ('good' | 'medium' | 'bad').
+ * @param greenery - Quality of the tree presence and greenery in the block ('good' | 'medium' | 'bad').
+ * @returns A number (usually between 0.8 and 1.2) that modifies the base value depending on location.
+ */
 export default function get_location_value(
 	neighbours: Neighbours,
 	lighting: Quality,
