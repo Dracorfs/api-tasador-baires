@@ -89,10 +89,10 @@ https://api-tasador-baires.deno.dev/tasacion
 ```
 
 ## 📁 Estructura del proyecto
-methods/: Módulos de cálculo individuales.
-utils/: Utilidades generales (reportes, helpers, etc).
-tests/: Tests unitarios para cada función.
-data.json: Datos de referencia (valores históricos de m²).
-api.ts: Entrada principal del servidor HTTP.
-calculate.ts: Lógica central desacoplada de la API.
-types.d.ts: Tipos globales.
+- methods/: Módulos de cálculo individuales.
+- utils/: Utilidades generales (reportes, helpers, etc).
+- tests/: Tests unitarios para cada función.
+- data.json: Datos de referencia (valores históricos de m²).
+- api.ts: Entrada principal del servidor HTTP.
+- calculate.ts: Lógica central desacoplada de la API.
+- types.d.ts: Tipos globales.
