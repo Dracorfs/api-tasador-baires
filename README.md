@@ -34,7 +34,7 @@ POST /tasacion
 Content-Type: application/json
 ```
 #### URL
-```http
+```text
 https://api-tasador-baires.deno.dev/tasacion
 ```
 #### Body
