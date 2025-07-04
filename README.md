@@ -21,6 +21,11 @@ deno test
 ```
 Incluye tests unitarios para cada módulo de cálculo.
 
+### 🐳 Docker
+```bash
+docker compose up --build
+```
+
 ## Ejemplos
 ### 📩 Ejemplo de Request
 #### Método

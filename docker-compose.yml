@@ -1,0 +1,7 @@
+services:
+  tasador-api:
+    build: .
+    ports:
+      - "8000:8000"
+    container_name: tasador_api
+    restart: unless-stopped

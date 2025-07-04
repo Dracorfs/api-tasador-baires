@@ -1,0 +1,11 @@
+.git
+.gitignore
+README.md
+LICENSE
+Dockerfile
+.dockerignore
+tests/
+*.test.ts
+*.md
+node_modules/
+deno.lock
