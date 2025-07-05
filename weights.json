@@ -29,5 +29,84 @@
 		"ambient": 0.1,
 		"installations": 0.1,
 		"systems": 0.1
+	},
+	"inmutable": {
+		"covered_surface": {
+			"<30m2": 1.1,
+			"<50m2": 1.05,
+			"<100m2": 1.0,
+			"<150m2": 0.95,
+			"<250m2": 0.9,
+			">250m2": 0.8
+		},
+		"uncovered_surface": {
+			"balcony": 0.33,
+			"backyard": 0.2,
+			"semi_covered": 0.5
+		},
+		"affordability_thresholds": {
+			"good": 1.1,
+			"acceptable": 1.0,
+			"bad": 0.9
+		},
+		"monthly_cost_factor": 1000,
+		"floor": {
+			"<1": 0.9,
+			"<3": 0.95,
+			"<5": 1.0,
+			"<7": 1.05,
+			"<9": 1.1,
+			">9": 1.15,
+			"highest": 0.9
+		},
+		"orientation": {
+			"N": 1.1,
+			"E": 1.0,
+			"W": 1.0,
+			"S": 0.9,
+			"NE": 1.05,
+			"NW": 1.05,
+			"SE": 0.95,
+			"SW": 0.95
+		},
+		"layout": {
+			"front_facing": 1.05,
+			"rear_facing": 1.0,
+			"internal": 0.9,
+			"lateral": 0.9,
+			"reversed_plan": 0.9
+		},
+		"views": {
+			"remarkable": 1.1,
+			"good": 1.05,
+			"common": 1.0,
+			"bad": 0.9
+		},
+		"type": {
+			"studio_apartment": null,
+			"half_floor": null,
+			"full_floor": null,
+			"duplex": null
+		}
+	},
+	"location": {
+		"lighting": {
+			"good": 1.05,
+			"medium": 1.0,
+			"bad": 0.95
+		},
+		"greenery": {
+			"good": 1.05,
+			"medium": 1.0,
+			"bad": 0.95
+		},
+		"neighbours": {
+			"parks": 0.03,
+			"schools": 0.02,
+			"subway": 0.04,
+			"shopping_malls": 0.02,
+			"danger_zones": -0.08,
+			"industrial": -0.05
+		}
 	}
 }

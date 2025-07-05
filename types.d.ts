@@ -1,6 +1,6 @@
 export type Quality = "good" | "medium" | "bad"
 export type Prestige = "high" | "medium" | "low"
-export type Orientation = "N" | "E" | "O" | "S" | "NE" | "NO" | "SE" | "SO"
+export type Orientation = "N" | "E" | "W" | "S" | "NE" | "NW" | "SE" | "SW"
 export type Layout = "front_facing" | "rear_facing" | "internal" | "lateral" | "reversed_plan"
 export type ApartmentType = 'studio_apartment' | 'half_floor' | 'full_floor' | 'duplex'
 export type Views = 'remarkable' | 'good' | 'common' | 'bad'
