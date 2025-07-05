@@ -15,14 +15,13 @@ export default function get_inmutable_value(listed_value: number, input: Inmutab
 	let total = 1.0
 	const weight = weights.inmutable
 
-	const { covered_surface, semi_covered_surface, uncovered_surface_balcony, uncovered_surface_backyard, maintenance_fees, fixed_costs_and_taxes, floor, orientation, layout, type, building_highest_floor, views } = input
+	const { covered_surface, maintenance_fees, fixed_costs_and_taxes, floor, orientation, layout, type, building_highest_floor, views } = input
 	
 	// 1. Covered surface area
 	total *= get_covered_surface_factor(covered_surface, weight.covered_surface)
 
 	// 2. Semi-covered and uncovered surface area
-	const m2_extra = semi_covered_surface * weight.uncovered_surface.semi_covered + uncovered_surface_balcony * weight.uncovered_surface.balcony + uncovered_surface_backyard * weight.uncovered_surface.backyard
-	total += m2_extra / covered_surface // proportional
+	total += get_semicovered_surface_factor(input)
 
 	// 3. Value of monthly maintenance fees.
 	const monthly_cost_factor = weight.monthly_cost_factor
@@ -78,4 +77,14 @@ function get_covered_surface_factor(m2:number, weight:Record<CoveredSurfaceRange
 	else if (m2 <= 250) factor = weight["<250m2"]
 	else factor = weight[">250m2"]
 	return factor
+}
+
+function get_semicovered_surface_factor(input: InmutableData) {
+	const weight = weights.inmutable.uncovered_surface
+	const { covered_surface, semi_covered_surface, uncovered_surface_balcony, uncovered_surface_backyard } = input
+	const semi_covered_value = semi_covered_surface * weight.semi_covered
+	const balcony_value = uncovered_surface_balcony * weight.balcony
+	const backyard_value = uncovered_surface_backyard * weight.backyard
+	const m2_extra = semi_covered_value + balcony_value + backyard_value
+	return m2_extra / covered_surface // proportional
 }
