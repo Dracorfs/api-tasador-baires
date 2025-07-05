@@ -32,15 +32,7 @@ export default function get_inmutable_value(listed_value: number, input: Inmutab
 	total *= affordability_costs
 	
 	// 5. Building floor
-	let floor_factor:number
-	if (floor <= 1) floor_factor = weight.floor["<1"]
-	else if (floor <= 3) floor_factor = weight.floor["<3"]
-	else if (floor <= 5) floor_factor = weight.floor["<5"]
-	else if (floor <= 7) floor_factor = weight.floor["<7"]
-	else if (floor <= 9) floor_factor = weight.floor["<9"]
-	else if (floor < building_highest_floor - 1) floor_factor = weight.floor[">9"]
-	else floor_factor = weight.floor["highest"]
-	total *= floor_factor
+	total *= get_floor_factor(floor, building_highest_floor)
 
 	// 6. Orientation
 	total *= weight.orientation[orientation]
@@ -87,4 +79,17 @@ function get_semicovered_surface_factor(input: InmutableData) {
 	const backyard_value = uncovered_surface_backyard * weight.backyard
 	const m2_extra = semi_covered_value + balcony_value + backyard_value
 	return m2_extra / covered_surface // proportional
+}
+
+function get_floor_factor(floor: number, building_highest_floor: number) {
+	const weight = weights.inmutable.floor
+	let floor_factor:number
+	if (floor <= 1) floor_factor = weight["<1"]
+	else if (floor <= 3) floor_factor = weight["<3"]
+	else if (floor <= 5) floor_factor = weight["<5"]
+	else if (floor <= 7) floor_factor = weight["<7"]
+	else if (floor <= 9) floor_factor = weight["<9"]
+	else if (floor < building_highest_floor - 1) floor_factor = weight[">9"]
+	else floor_factor = weight["highest"]
+	return floor_factor
 }
