@@ -83,13 +83,15 @@ https://api-tasador-baires.deno.dev/tasacion
 ### 📤 Ejemplo de Response
 ```json
 {
-    "location": 1.2,
-    "building": 1.1,
-    "inmutable": 1.147,
-    "condition": 1.2,
     "listed_value": 100000,
     "factor_final": 1.817,
-    "tasacion_usd": 279818
+    "tasacion_usd": 279818,
+    "explanation": [
+        "location: positive (0.200)",
+        "condition: positive (0.200)",
+        "inmutable: positive (0.147)",
+        "building: positive (0.100)"
+    ]
 }
 ```
 
