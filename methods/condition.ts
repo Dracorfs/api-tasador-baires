@@ -1,4 +1,5 @@
 import type { ConditionData } from "../types.d.ts"
+import weights from "../weights.json" with { type: "json" };
 
 /**
  * Calculates the property condition factor based on condition-related variables that can be improved (ambient state, installations and systems).
@@ -12,9 +13,9 @@ export default function get_condition_value(condition: ConditionData): number {
 
 	// Config weight by groups
 	const weight = {
-		ambient: 0.1,        // kitchen, bathrooms, etc.
-		installations: 0.1,  // water, gas, etc.
-		systems: 0.1        // heating, etc.
+		ambient: weights.condition.ambient,              // kitchen, bathrooms, etc.
+		installations: weights.condition.installations,  // water, gas, etc.
+		systems: weights.condition.systems               // heating, etc.
 	}
 	// Maximum = 1 + 0.1 + 0.1 + 0.1 = 1.3 → clamped a 1.2
 	// Minimum = 0.9 * 0.9 * 0.9 = 0.729 → clamped a 0.8

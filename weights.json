@@ -1,0 +1,33 @@
+{
+	"building": {
+		"age": {
+			"new_bonus": 0.01,
+			"old_penalty": -0.03
+		},
+		"quality": {
+			"good": 0.03,
+			"bad": -0.03
+		},
+		"prestige": {
+			"high": 0.03,
+			"low": -0.03
+		},
+		"common_space": {
+			"good": 0.01,
+			"bad": -0.01
+		},
+		"central_services": {
+			"good": 0.01,
+			"bad": -0.01
+		},
+		"exterior": {
+			"good": 0.02,
+			"bad": -0.02
+		}
+	},
+	"condition": {
+		"ambient": 0.1,
+		"installations": 0.1,
+		"systems": 0.1
+	}
+}
