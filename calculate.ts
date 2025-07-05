@@ -4,6 +4,7 @@ import get_building_value from "./methods/building.ts"
 import get_inmutable_value from "./methods/inmutable.ts"
 import get_condition_value from "./methods/condition.ts"
 import data from "./data.json" with { type: "json" }
+import get_factors_impact from "./utils/get_factors_impact.ts"
 
 export default function calculate_valuation(body: ValuationInput) {
 	const location = get_location_value(
@@ -32,13 +33,13 @@ export default function calculate_valuation(body: ValuationInput) {
 
 	const tasacion = final_factor * precio_m2_base * body.inmutable.covered_surface
 
+	const factors = { location, building, inmutable, condition }
+	const explanations = get_factors_impact(factors)
+
 	return {
-		location,
-		building,
-		inmutable,
-		condition,
 		listed_value: body.listed_value,
 		factor_final: final_factor,
-		tasacion_usd: Math.round(tasacion)
+		tasacion_usd: Math.round(tasacion),
+		explanation: explanations
 	}
 }
