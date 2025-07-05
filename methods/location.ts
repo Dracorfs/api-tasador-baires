@@ -1,4 +1,5 @@
 import type { Neighbours, Quality } from "../types.d.ts"
+import weights from "../weights.json" with { type: "json" }
 
 /**
  * Calculates a factor based on the location and immediate environment of the property. Total: +-20%.
@@ -19,12 +20,10 @@ export default function get_location_value(
 	let ponderacion_total = 1
 	const vecinos_valoracion = verify_neighbours(neighbours)
 
-	if (vecinos_valoracion === 'negative') {
-		ponderacion_total = 0.8
-	}
-	else if (lighting !== 'bad' && greenery !== 'bad') {
-		ponderacion_total = 1.2
-	}
+	if (vecinos_valoracion === 'negative')
+		ponderacion_total = weights.location.bad
+	else if (lighting !== 'bad' && greenery !== 'bad')
+		ponderacion_total = weights.location.good
 
 	return ponderacion_total
 }

@@ -90,23 +90,7 @@
 		}
 	},
 	"location": {
-		"lighting": {
-			"good": 1.05,
-			"medium": 1.0,
-			"bad": 0.95
-		},
-		"greenery": {
-			"good": 1.05,
-			"medium": 1.0,
-			"bad": 0.95
-		},
-		"neighbours": {
-			"parks": 0.03,
-			"schools": 0.02,
-			"subway": 0.04,
-			"shopping_malls": 0.02,
-			"danger_zones": -0.08,
-			"industrial": -0.05
-		}
+		"good": 1.2,
+		"bad": 0.8
 	}
 }
