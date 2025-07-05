@@ -1,3 +1,4 @@
+export type CoveredSurfaceRanges = "<30m2" | "<50m2" | "<100m2" | "<150m2" | "<250m2" | ">250m2"
 export type Quality = "good" | "medium" | "bad"
 export type Prestige = "high" | "medium" | "low"
 export type Orientation = "N" | "E" | "W" | "S" | "NE" | "NW" | "SE" | "SW"

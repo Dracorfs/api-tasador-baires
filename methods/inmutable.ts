@@ -1,4 +1,4 @@
-import type { InmutableData } from "../types.d.ts"
+import type { InmutableData, CoveredSurfaceRanges } from "../types.d.ts"
 import weights from "../weights.json" with { type: "json" }
 
 /**
@@ -18,12 +18,7 @@ export default function get_inmutable_value(listed_value: number, input: Inmutab
 	const { covered_surface, semi_covered_surface, uncovered_surface_balcony, uncovered_surface_backyard, maintenance_fees, fixed_costs_and_taxes, floor, orientation, layout, type, building_highest_floor, views } = input
 	
 	// 1. Covered surface area
-	if (covered_surface <= 30) total *= weight.covered_surface["<30m2"]
-	else if (covered_surface <= 50) total *= weight.covered_surface["<50m2"]
-	else if (covered_surface <= 100) total *= weight.covered_surface["<100m2"]
-	else if (covered_surface <= 150) total *= weight.covered_surface["<150m2"]
-	else if (covered_surface <= 250) total *= weight.covered_surface["<250m2"]
-	else total *= weight.covered_surface[">250m2"]
+	total *= get_covered_surface_factor(covered_surface, weight.covered_surface)
 
 	// 2. Semi-covered and uncovered surface area
 	const m2_extra = semi_covered_surface * weight.uncovered_surface.semi_covered + uncovered_surface_balcony * weight.uncovered_surface.balcony + uncovered_surface_backyard * weight.uncovered_surface.backyard
@@ -72,4 +67,15 @@ function evaluate_affordability(listed_value: number, monthly_cost: number, fact
 	if (monthly_cost <= ratio * 0.75) return weight.good
 	if (monthly_cost <= ratio * 1.25) return weight.acceptable
 	return weight.bad
+}
+
+function get_covered_surface_factor(m2:number, weight:Record<CoveredSurfaceRanges, number>) {
+	let factor:number
+	if (m2 <= 30) factor = weight["<30m2"]
+	else if (m2 <= 50) factor = weight["<50m2"]
+	else if (m2 <= 100) factor = weight["<100m2"]
+	else if (m2 <= 150) factor = weight["<150m2"]
+	else if (m2 <= 250) factor = weight["<250m2"]
+	else factor = weight[">250m2"]
+	return factor
 }
