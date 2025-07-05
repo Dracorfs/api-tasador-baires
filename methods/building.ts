@@ -1,4 +1,5 @@
 import type { Quality,Prestige } from "../types.d.ts"
+import weights from "../weights.json" with { type: "json" }
 
 /**
  * Calculates the value factor based on the building's characteristics. Total: +-10%
@@ -29,39 +30,39 @@ export default function get_building_value(
 
 	// 1. Age
 	if (age > 50)
-		total -= 0.015
+		total += weights.building.age.old_penalty
 	else if (age < 10)
-		total += 0.015
+		total += weights.building.age.new_bonus
 
 	// 2. Constructive quality
 	if (quality === 'good')
-		total += 0.025
+		total += weights.building.quality.good
 	else if (quality === 'bad')
-		total -= 0.025
+		total += weights.building.quality.bad
 
 	// 3. Common spaces
 	if (common_space === 'good')
-		total += 0.01
+		total += weights.building.common_space.good
 	else if (common_space === 'bad')
-		total -= 0.01
+		total += weights.building.common_space.bad
 
 	// 4. Central services
 	if (central_services === 'good')
-		total += 0.01
+		total += weights.building.central_services.good
 	else if (central_services === 'bad')
-		total -= 0.01
+		total += weights.building.central_services.bad
 
 	// 5. Exteriors
 	if (exterior === 'good')
-		total += 0.015
+		total += weights.building.exterior.good
 	else if (exterior === 'bad')
-		total -= 0.015
+		total += weights.building.exterior.bad
 
 	// 6. Prestige
 	if (prestige === 'high')
-		total = 1.1
+		total = weights.building.prestige.high
 	else if (prestige === 'low')
-		total -= 0.025
+		total += weights.building.prestige.low
 
 	// Clamp to range [0.9, 1.1]
 	return Math.max(0.9, Math.min(1.1, parseFloat(total.toFixed(3))))

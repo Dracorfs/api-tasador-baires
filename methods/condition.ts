@@ -1,5 +1,5 @@
 import type { ConditionData } from "../types.d.ts"
-import weights from "../weights.json" with { type: "json" };
+import weights from "../weights.json" with { type: "json" }
 
 /**
  * Calculates the property condition factor based on condition-related variables that can be improved (ambient state, installations and systems).
