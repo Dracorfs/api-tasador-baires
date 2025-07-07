@@ -1,4 +1,4 @@
-import type { ValuationInput } from "./types.d.ts"
+import type { BedroomCount, ValuationInput } from "./types.d.ts"
 import get_location_value from "./methods/location.ts"
 import get_building_value from "./methods/building.ts"
 import get_inmutable_value from "./methods/inmutable.ts"
@@ -29,7 +29,7 @@ export default function calculate_valuation(body: ValuationInput) {
 	const subtotal_factor = location * building * inmutable * condition
 	const final_factor = parseFloat(subtotal_factor.toFixed(3))
 
-	const precio_m2_base = Object.values(data.precios_promedio_cierre).at(-1) || 1
+	const precio_m2_base = get_average_value(body.bedrooms)
 
 	const tasacion = final_factor * precio_m2_base * body.inmutable.covered_surface
 
@@ -42,4 +42,8 @@ export default function calculate_valuation(body: ValuationInput) {
 		tasacion_usd: Math.round(tasacion),
 		explanation: explanations
 	}
+}
+
+function get_average_value(bedrooms: BedroomCount) {
+	return data.average_value_per_bedroom[bedrooms]["closing_price_USD/m2"]
 }

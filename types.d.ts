@@ -6,6 +6,20 @@ export type Layout = "front_facing" | "rear_facing" | "internal" | "lateral" | "
 export type ApartmentType = 'studio_apartment' | 'half_floor' | 'full_floor' | 'duplex'
 export type Views = 'remarkable' | 'good' | 'common' | 'bad'
 export type Neighbours = string[]
+export type BedroomCount = "0" | "1" | "2"
+type BedroomStats = {
+	m2: number
+	monthly_rent_ARS: number
+	annual_rent_USD: number
+	listed_value: number | null
+	"closing_price_USD/m2": number
+	closing_price_USD: number
+}
+export type AverageValuePerBedroom = {
+	updated_date: string
+} & {
+	[key in BedroomCount]: BedroomStats
+}
 export interface InmutableData {
 	covered_surface: number
 	semi_covered_surface: number
@@ -47,4 +61,5 @@ export interface ValuationInput {
 	inmutable: InmutableData
 	condition: ConditionData
 	listed_value: number
+	bedrooms: BedroomCount
 }

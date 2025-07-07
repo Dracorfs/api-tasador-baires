@@ -40,6 +40,7 @@ https://api-tasador-baires.deno.dev/tasacion
 #### Body
 ```json
 {
+  "bedrooms": 0,
   "listed_value": 100000,
   "neighbours": ["parks"],
   "lighting": "good",
