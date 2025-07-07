@@ -38,7 +38,7 @@
 			"monthly_rent_ARS": 544563,
 			"annual_rent_USD": 5538,
 			"listed_value": null,
-			"closing_price_USD/m2": 2150,
+			"closing_price_USD_m2": 2150,
 			"closing_price_USD": 86000
 		},
 		"1": {
@@ -46,7 +46,7 @@
 			"monthly_rent_ARS": 640427,
 			"annual_rent_USD": 6513,
 			"listed_value": 2416,
-			"closing_price_USD/m2": 2075,
+			"closing_price_USD_m2": 2075,
 			"closing_price_USD": 103750
 		},
 		"2": {
@@ -54,7 +54,7 @@
 			"monthly_rent_ARS": 860644,
 			"annual_rent_USD": 8752,
 			"listed_value": null,
-			"closing_price_USD/m2": 2025,
+			"closing_price_USD_m2": 2025,
 			"closing_price_USD": 141750
 		}
 	}

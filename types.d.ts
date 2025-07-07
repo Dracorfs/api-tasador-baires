@@ -7,12 +7,18 @@ export type ApartmentType = 'studio_apartment' | 'half_floor' | 'full_floor' | '
 export type Views = 'remarkable' | 'good' | 'common' | 'bad'
 export type Neighbours = string[]
 export type BedroomCount = "0" | "1" | "2"
+export type AdressInfo = {
+	street: string,
+	number: number | null,
+	apartment: number | null,
+	between_streets: [string, string]
+}
 type BedroomStats = {
 	m2: number
 	monthly_rent_ARS: number
 	annual_rent_USD: number
 	listed_value: number | null
-	"closing_price_USD/m2": number
+	closing_price_USD_m2: number
 	closing_price_USD: number
 }
 export type AverageValuePerBedroom = {
@@ -49,6 +55,7 @@ export interface ConditionData {
 	ventilation: Quality
 }
 export interface ValuationInput {
+	address: AdressInfo
 	neighbours: string[]
 	lighting: Quality
 	greenery: Quality

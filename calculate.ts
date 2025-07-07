@@ -35,8 +35,10 @@ export default function calculate_valuation(body: ValuationInput) {
 
 	const factors = { location, building, inmutable, condition }
 	const explanations = get_factors_impact(factors)
-
+	const unique_adress = `${body.address.street} ${body.address.number || 'S/N'}${body.address.apartment ? ` ${body.address.apartment}` : ''}`
+	
 	return {
+		id: unique_adress,
 		listed_value: body.listed_value,
 		factor_final: final_factor,
 		tasacion_usd: Math.round(tasacion),
@@ -45,5 +47,5 @@ export default function calculate_valuation(body: ValuationInput) {
 }
 
 function get_average_value(bedrooms: BedroomCount) {
-	return data.average_value_per_bedroom[bedrooms]["closing_price_USD/m2"]
+	return data.average_value_per_bedroom[bedrooms]?.closing_price_USD_m2 || 0
 }

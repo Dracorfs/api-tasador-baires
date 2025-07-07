@@ -40,6 +40,12 @@ https://api-tasador-baires.deno.dev/tasacion
 #### Body
 ```json
 {
+  "address": {
+    "street": "Caseros",
+    "number": 449,
+    "apartment": 1,
+    "between_streets": ["Defensa", "Bolivar"]
+  },
   "bedrooms": 0,
   "listed_value": 100000,
   "neighbours": ["parks"],
