@@ -11,4 +11,4 @@ COPY . .
 EXPOSE 8000
 
 # Permisos: red
-CMD ["run", "--allow-net", "api.ts"]
+CMD ["run", "--allow-net", "--allow-env", "--allow-read", "api.ts"]

@@ -5,8 +5,9 @@ import get_inmutable_value from "./methods/inmutable.ts"
 import get_condition_value from "./methods/condition.ts"
 import data from "./data.json" with { type: "json" }
 import get_factors_impact from "./utils/get_factors_impact.ts"
+import { save_estimate } from "./utils/save_estimate.ts"
 
-export default function calculate_valuation(body: ValuationInput) {
+export default async function calculate_valuation(body: ValuationInput) {
 	const location = get_location_value(
 		body.neighbours,
 		body.lighting,
@@ -36,12 +37,24 @@ export default function calculate_valuation(body: ValuationInput) {
 	const factors = { location, building, inmutable, condition }
 	const explanations = get_factors_impact(factors)
 	const unique_adress = `${body.address.street} ${body.address.number || 'S/N'}${body.address.apartment ? ` ${body.address.apartment}` : ''}`
-	
+	const tasacion_rounded = Math.round(tasacion)
+
+	await save_estimate({
+		id: unique_adress,
+		listed_value: body.listed_value,
+		location_factor: location,
+		building_factor: building,
+		inmutable_factor: inmutable,
+		condition_factor: condition,
+		factor_final: final_factor,
+		tasacion_usd: tasacion_rounded
+	})
+
 	return {
 		id: unique_adress,
 		listed_value: body.listed_value,
 		factor_final: final_factor,
-		tasacion_usd: Math.round(tasacion),
+		tasacion_usd: tasacion_rounded,
 		explanation: explanations
 	}
 }
