@@ -35,7 +35,7 @@ Content-Type: application/json
 ```
 #### URL
 ```text
-https://api-tasador-baires.deno.dev/tasacion
+https://api-tasador-baires.dracorfs.deno.net/tasacion
 ```
 #### Body
 ```json
